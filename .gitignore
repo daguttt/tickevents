@@ -33,3 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore REST Client files (.http). Except the example
+/*.http
+!/*.example.http
