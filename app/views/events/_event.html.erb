@@ -1,22 +1,6 @@
-<div id="<%= dom_id event %>">
-  <p>
-    <strong>Name:</strong>
-    <%= event.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= event.description %>
-  </p>
-
-  <p>
-    <strong>Starting date:</strong>
-    <%= event.starting_date %>
-  </p>
-
-  <p>
-    <strong>Ending date:</strong>
-    <%= event.ending_date %>
-  </p>
-
-</div>
+<tr id="<%= dom_id event %>" class="hover:bg-gray-100 dark:hover:bg-neutral-700">
+  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"><%= link_to event.name, event %></td>
+  <td class="px-6 py-4 max-w-64 text-sm text-gray-800 dark:text-neutral-200"><%= event.description %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><%= event.starting_date.strftime("%B %d, %Y") %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><%= event.ending_date.strftime("%B %d, %Y") %></td>
+</tr>
