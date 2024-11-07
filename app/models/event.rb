@@ -8,6 +8,9 @@ class Event < ApplicationRecord
 
   before_validation :normalize_name
 
+  # Scopes
+  scope :in_past_month, -> { where(ending_date: 1.month.ago..1.day.ago) }
+
   private
 
   def ending_date_after_starting_date
