@@ -37,3 +37,7 @@
 # Ignore REST Client files (.http). Except the example
 /*.http
 !/*.example.http
+
+# Builds (added by `rails tailwindcss:install`)
+/app/assets/builds/*
+!/app/assets/builds/.keep
