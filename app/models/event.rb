@@ -10,6 +10,7 @@ class Event < ApplicationRecord
 
   # Scopes
   scope :in_past_month, -> { where(ending_date: 1.month.ago..1.day.ago) }
+  scope :with_concert_word, -> { where("description LIKE '%concert%'") }
 
   private
 

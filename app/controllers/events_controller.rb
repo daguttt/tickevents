@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @events_in_past_month = Event.in_past_month
+    @events_with_concert_word = Event.with_concert_word
   end
 
   # GET /events/1 or /events/1.json
