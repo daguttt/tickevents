@@ -1,10 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<main class="container mx-auto p-4">
+  <p style="color: green"><%= notice %></p>
 
-<%= render @event %>
+  <%= link_to "Back to events", events_path, class: "py-3 px-4 mb-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-blue-600 hover:bg-blue-100 hover:text-blue-800 focus:outline-none focus:bg-blue-100 focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:bg-blue-800/30 dark:hover:text-blue-400 dark:focus:bg-blue-800/30 dark:focus:text-blue-400" %>
+  <article class="relative space-y-4">
+    <p><small><%= @event.starting_date.strftime("%A, %B %e (%I:%M %P)") %> -> <%= @event.ending_date.strftime("%A, %B %e (%I:%M %P)") %> </small></p>
 
-<div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
-
-  <%= button_to "Destroy this event", @event, method: :delete %>
-</div>
+    <div class="flex justify-between">
+      <h2 class="text-4xl"><%= @event.name %></h2>
+      <div class="flex gap-2">
+        <%= link_to edit_event_path(@event), class: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 focus:outline-none focus:border-blue-500 focus:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:border-blue-500 dark:text-blue-500 dark:hover:text-blue-400 dark:hover:border-blue-400" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1l1-4z" /></g></svg>
+        <% end %>
+        <%= button_to event_path(@event), method: :delete, class: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:bg-red-600 disabled:opacity-50 disabled:pointer-events-none" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 2048 2048"><path fill="currentColor" d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z" /></svg>
+        <% end %>
+      </div>
+    </div>
+    <p><%= @event.description %> </p>
+  </article>
+</main>
