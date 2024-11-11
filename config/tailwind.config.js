@@ -1,11 +1,12 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/views/**/*.{erb,haml,html,slim}',
   ],
   theme: {
     extend: {
@@ -18,5 +19,12 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-  ]
-}
+    plugin(function ({ addComponents, theme }) {
+      addComponents({
+        '.main-min-h': {
+          minHeight: `calc(100svh - ${theme('spacing.4')} * 2)`,
+        },
+      });
+    }),
+  ],
+};
