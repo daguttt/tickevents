@@ -2,6 +2,7 @@
   <h2 class="text-4xl mb-4">Registro</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4 max-w-sm" }) do |f| %>
+    <%= render "partials/flash" %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div>
