@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
+<main class="grid content-center gap-4 max-w-sm mx-auto p-4 main-min-h">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="text-2xl">Restablecer contraseña</h2>
+  <p class="text-gray-600 dark:text-gray-800">Ingresa el correo con el que te registraste. Te enviarémos un correo con las instrucciones para restablecer tu cuenta</p>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "space-y-4 max-w-sm" }) do |f| %>
+    <%= render "partials/flash" %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div>
+      <%= f.label :email, class: "block text-sm font-medium mb-2 dark:text-white" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <%= f.submit "Enviar instrucciones", class: "py-3 px-4 w-full max-w-sm inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" %>
 
-<%= render "devise/shared/links" %>
+    <div class="flex gap-2 justify-center text-sm">
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Inicia sesión", new_session_path(resource_name), class: "text-blue-600 hover:underline" %>
+      <% end %>
+      <span>|</span>
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Regístrate", new_registration_path(resource_name), class: "text-blue-600 hover:underline" %>
+      <% end %>
+    </div>
+  <% end %>
+</main>
