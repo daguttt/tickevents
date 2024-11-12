@@ -1,6 +1,7 @@
 <tr id="<%= dom_id event %>" class="hover:bg-gray-100 dark:hover:bg-neutral-700">
   <td class="whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200"><%= link_to event.name, event, class: "w-full px-6 py-4 inline-block hover:underline focus:outline-none focus:underline" %></td>
   <td class="px-6 py-4 min-w-52 max-w-64 text-sm text-gray-800 dark:text-neutral-200"><%= event.description %></td>
+  <td class="px-6 py-4 min-w-52 max-w-64 text-sm text-gray-800 dark:text-neutral-200"><%= event.user.username %></td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><%= event.starting_date.strftime("%B %d, %Y - %I:%M %P") %></td>
   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><%= event.ending_date.strftime("%B %d, %Y - %I:%M %P") %></td>
 </tr>
