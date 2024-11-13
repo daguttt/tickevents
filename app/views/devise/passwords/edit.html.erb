@@ -1,25 +1,34 @@
-<h2>Change your password</h2>
+<main class="grid content-center gap-4 max-w-sm mx-auto p-4 main-min-h">
+  <h2 class="text-2xl">Cambia tu contraseña</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, "New password", class: "text-sm font-medium mb-2 dark:text-white" %><br>
+      <% if @minimum_password_length %>
+        <span class="text-xs text-gray-500 dark:text-gray-100">
+          (<%= @minimum_password_length %> caracteres mínimo)
+        </span>
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div>
+      <%= f.label :password_confirmation, "Confirmar contraseña", class: "text-sm font-medium mb-2 dark:text-white" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <%= f.submit "Cambiar mi contraseña", class: "py-3 px-4 w-full max-w-sm inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" %>
+    <div class="flex gap-2 justify-center text-sm">
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Inicia sesión", new_session_path(resource_name), class: "text-blue-600 hover:underline" %>
+      <% end %>
+      <span>|</span>
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Regístrate", new_registration_path(resource_name), class: "text-blue-600 hover:underline" %>
+      <% end %>
+    </div>
+  <% end %>
+</main>
