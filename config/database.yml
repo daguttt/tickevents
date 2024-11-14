@@ -82,4 +82,5 @@ test:
 #
 production:
   <<: *default
-  database: tickevents_production
+  host: <%= ENV.fetch("DATABASE_HOST") %>
+  database: <%= ENV.fetch("DATABASE_NAME") %>
