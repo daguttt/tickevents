@@ -16,6 +16,13 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Declare environment variables at build time
+ARG DATABASE_USERNAME
+ARG DATABASE_PASSWORD
+ARG DATABASE_HOST
+ARG DATABASE_PORT
+ARG DATABASE_NAME
+
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -44,11 +51,11 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 \
-    DATABASE_USERNAME_DUMMY="user" \
-    DATABASE_PASSWORD_DUMMY="password" \
-    DATABASE_HOST_DUMMY="host" \
-    DATABASE_PORT_DUMMY="port" \
-    DATABASE_NAME_DUMMY="name" ./bin/rails assets:precompile
+    DATABASE_USERNAME_DUMMY=$DATABASE_USERNAME \
+    DATABASE_PASSWORD_DUMMY=$DATABASE_PASSWORD \
+    DATABASE_HOST_DUMMY=$DATABASE_HOST \
+    DATABASE_PORT_DUMMY=$DATABASE_PORT \
+    DATABASE_NAME_DUMMY=$DATABASE_NAME ./bin/rails assets:precompile
 
 
 
