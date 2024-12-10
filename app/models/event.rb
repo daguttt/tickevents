@@ -17,7 +17,9 @@ class Event < ApplicationRecord
   private
 
   def ending_date_after_starting_date
-    errors.add(:ending_date, "must be after the starting date") if self.ending_date < self.starting_date
+    ending_date = self.ending_date || Time.now
+    starting_date = self.starting_date || Time.now
+    errors.add(:ending_date, :after_starting_date) if ending_date < starting_date
   end
 
   def normalize_name
