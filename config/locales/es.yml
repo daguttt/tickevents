@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    errors:
+      models:
+        event:
+          attributes:
+            name:
+              blank: 'No puede estar en blanco'
+            description:
+              blank: 'No puede estar en blanco'
+            starting_date:
+              blank: 'No puede estar en blanco'
+              future_date: 'Debe estar en el futuro'
+            ending_date:
+              blank: 'No puede estar en blanco'
+              after_starting_date: 'Debe ser posterior a la fecha de inicio'
+          blank: 'El evento no puede estar en blanco'
+      messages:
+        blank: 'No puede estar en blanco'
