@@ -4,11 +4,11 @@
       <h1>Tickevents</h1>
     <% end %>
     <% if user_signed_in? %>
-      <div class="flex gap-2 items-center">
-        <p><%= current_user.username %></p>
-        <%= link_to edit_user_registration_path(current_user), class: "size-10 rounded-full shadow-sm border border-gray-200 overflow-hidden" do %>
+      <div class="flex gap-5 items-center">
+        <%= link_to edit_user_registration_path(current_user), class: "flex gap-2 items-center" do %>
+          <p><%= current_user.username %></p>
           <% if current_user.avatar.attached? %>
-            <img src="<%= url_for(current_user.avatar) %>" alt="Avatar" class="w-10">
+            <picture class="size-10 rounded-full shadow-sm border border-gray-200 overflow-hidden"><img src="<%= url_for(current_user.avatar) %>" alt="Avatar" class="w-10"></picture>
           <% else %>
             <span>No avatar</span>
           <% end %>
