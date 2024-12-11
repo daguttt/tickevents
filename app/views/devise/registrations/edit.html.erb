@@ -43,10 +43,12 @@
       <div class="grid gap-1">
         <%= f.label :avatar, class: "block text-sm font-medium mb-2 dark:text-white" %>
         <div class="flex gap-2">
-          <figure class="w-fit grid place-items-center gap-1">
-            <img src="<%= url_for(current_user.avatar) %>" alt="Avatar" class="w-16 rounded-full">
-            <figcaption class="w-max text-xs text-gray-500 dark:text-gray-100">Current avatar</figcaption>
-          </figure>
+          <% if current_user.avatar.attached? %>
+            <figure class="w-fit grid place-items-center gap-1">
+              <img src="<%= url_for(current_user.avatar) %>" alt="Avatar" class="w-16 rounded-full">
+              <figcaption class="w-max text-xs text-gray-500 dark:text-gray-100">Current avatar</figcaption>
+            </figure>
+          <% end %>
           <%= f.file_field :avatar, class: "self-center block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4 dark:file:bg-neutral-700 dark:file:text-neutral-400" %>
         </div>
       </div>
